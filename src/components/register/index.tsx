@@ -16,6 +16,36 @@ export default function RegisterUser() {
     const handleSubmitRegistration = async (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
 
+        const params = {
+            username: userName.current?.value!,
+            email: userEmail.current?.value!,
+            password: userPassword.current?.value!,
+            confirmPassword: confirmPassword.current?.value!
+        }
+
+        if (params.password !== params.confirmPassword) {
+            alert('Password diferents')
+        }
+
+        try{
+            const checkRegister = await registerUser(params)
+
+            const status = checkRegister?.status
+      
+            if (status === 201) {
+              navigate('/')
+            }
+      
+          } catch (error: any) {
+      
+            if (error.response.data.statusCode !== 200 && error.response.data.statusCode !== 401) {
+              alert('Error de servidor')
+            }
+      
+            if (error.response.data.statusCode === 401) {
+              alert('Login ou senha incorretos!')
+            }
+          }
     }
 
     return (
