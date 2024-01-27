@@ -1,22 +1,50 @@
 import React, { useRef } from 'react';
+import { useNavigate, Link } from 'react-router-dom'
 import imageUser from '../../assets/imgs/user.png'
 
-import {CheckLogin} from '../../backend/'
+import { checkLogin } from '../../backend/'
 
 export default function App() {
 
+    const navigate = useNavigate()
+
     const userEmail = useRef<HTMLInputElement | null>(null)
     const userPassword = useRef<HTMLInputElement | null>(null)
-  
+
     let extendTokenValidity = false;
-  
+
     const verifyCheckBox = (e: React.ChangeEvent<HTMLInputElement>) => {
-      extendTokenValidity = e.target.checked;
+        extendTokenValidity = e.target.checked;
     };
-  
+
     const handleSubmitLogin = async (e: React.MouseEvent<HTMLButtonElement>) => {
-      e.preventDefault();
-      const verifyLogin = await CheckLogin(userEmail.current?.value!, userPassword.current?.value!)
+        e.preventDefault();
+
+        const params = {
+            username: userEmail.current?.value!,
+            password: userPassword.current?.value!
+        }
+
+        try {
+            const verifyLogin = await checkLogin(params)
+
+            const token = verifyLogin?.data.token
+      
+            if (token) {
+              localStorage.setItem('token', token)
+              navigate('/upload')
+            }
+      
+          } catch (error: any) {
+ 
+            if (error.response.status !== 200 && error.response.status !== 401) {
+              alert('Error de servidor')
+            }
+      
+            if (error.response.status === 401) {
+              alert('Login ou senha incorretos!')
+            }
+          }
     };
 
     return (
@@ -57,8 +85,7 @@ export default function App() {
                     </button>
 
                     <p className="flex flex-col sm:flex-row justify-center items-center gap-1">
-                        Não Possui uma conta?
-                        <a href="#" className="font-medium text-white hover:text-sky-500 duration-200">Entre em contato</a>
+                        <Link to='/register' className="font-medium text-white hover:text-sky-500 duration-200">Não Possui uma conta?</Link>
                     </p>
                 </div>
             </main>
