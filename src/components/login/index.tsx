@@ -58,7 +58,7 @@ export default function App() {
 
                     <input className="w-3/4 rounded-lg p-1"
                         type="email"
-                        placeholder="Seu email..."
+                        placeholder="Your email..."
                         ref={userEmail}
                     />
 
@@ -71,21 +71,21 @@ export default function App() {
                     <div className="w-3/4 flex flex-col sm:flex-row items-center justify-between">
                         <div className="flex items-center gap-2">
                             <input onChange={verifyCheckBox} type="checkbox" />
-                            <label>Lembrar senha</label>
+                            <label>Remember password</label>
                         </div>
 
-                        <a href="#">Esqueceu a senha</a>
+                        <a href="#">Forgot password</a>
                     </div>
 
                     <button
                         type="submit"
                         className="w-3/4 p-1 rounded-md text-white bg-blue-700 hover:bg-blue-500 duration-200 cursor-pointer"
                         onClick={handleSubmitLogin}
-                    >Acessar
+                    >Access
                     </button>
 
                     <p className="flex flex-col sm:flex-row justify-center items-center gap-1">
-                        <Link to='/register' className="font-medium text-white hover:text-sky-500 duration-200">Não Possui uma conta?</Link>
+                        <Link to='/register' className="font-medium text-white hover:text-sky-500 duration-200">No Do you have an account?</Link>
                     </p>
                 </div>
             </main>
