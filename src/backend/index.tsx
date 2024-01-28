@@ -47,4 +47,13 @@ export async function registerUser(params:RegisterUser) {
 return response
 }
 
+export async function uploadFiles(params:FormData) {
+    
+    const URL = import.meta.env.VITE_API_URL
+
+    const response = axios.post(`${URL}/uploadfile/`,params, { responseType:'blob'})
+
+return response
+}
+
 
