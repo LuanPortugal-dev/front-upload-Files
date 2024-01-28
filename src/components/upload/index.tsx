@@ -25,14 +25,14 @@ const FileUpload: React.FC = () => {
     return (
         <div className="container mx-auto p-4 flex flex-col items-center justify-center">
             <div className="header mb-6 bg-red-500">
-                <h2 className="text-2xl font-bold text-center">d</h2>
+                <h2 className="text-2xl font-bold text-center">Send files to your email</h2>
             </div>
 
             <div className="mb-4">
                 <input
                     type="text"
                     ref={inputEmail}
-                    placeholder="Digite o seu e-mail..."
+                    placeholder="Enter your email..."
                     className="block w-full px-4 py-2 text-sm text-slate-500 border rounded"
                 />
             </div>
