@@ -27,34 +27,35 @@ export default function RegisterUser() {
             alert('Password diferents')
         }
 
-        try{
+        try {
             const checkRegister = await registerUser(params)
 
             const status = checkRegister?.status
-      
+
             if (status === 201) {
-              navigate('/')
+                alert('Usuario criado com Sucesso!!!')
+                navigate('/')
             }
-      
-          } catch (error: any) {
-      
+
+        } catch (error: any) {
+
             if (error.response.data.statusCode !== 200 && error.response.data.statusCode !== 401) {
-              alert('Error de servidor')
+                alert('Error de servidor')
             }
-      
+
             if (error.response.data.statusCode === 401) {
-              alert('Login ou senha incorretos!')
+                alert('Login ou senha incorretos!')
             }
-          }
+        }
     }
 
     return (
         <>
             <main className="w-full h-screen flex items-center justify-center bg-slate-400">
                 <div className="w-2/4 mh-3/4 py-5 flex flex-col items-center justify-center gap-4 bg-slate-500">
-                    
+
                     <img src={imageUser} className="w-20 hover:scale-110 duration-300" alt="Logo do Usuário" />
-                    
+
                     <h1 className="font-medium">User Registration</h1>
 
                     <input className="w-3/4 rounded-lg p-1"
