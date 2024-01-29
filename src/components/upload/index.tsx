@@ -15,6 +15,11 @@ const FileUpload: React.FC = () => {
         const formData = new FormData();
         formData.append("file", selectedFile!);
         formData.append("email", inputEmail.current?.value!)
+
+        if (!inputEmail.current?.value) {
+            alert('Insira um Email')
+        }
+
         const response  = await uploadFiles(formData)
 
         if (response.status === 200) {
